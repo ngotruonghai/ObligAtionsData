@@ -3,6 +3,7 @@
     public class UserConnectSqlViewModel
     {
         public string? ConnectionString { get; set; }
+        public string? StatusLogin { get; set;}
     }
     public class UserLoginViewModel
     {

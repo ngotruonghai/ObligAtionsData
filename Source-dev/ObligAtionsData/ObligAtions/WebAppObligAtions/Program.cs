@@ -14,7 +14,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         builder.RegisterModule(new DependencyRegister());
     });
 builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
-builder.Services.AddSession(option=> option.IdleTimeout=TimeSpan.FromMinutes(10));
+builder.Services.AddSession(option=> option.IdleTimeout=TimeSpan.FromHours(1));
 builder.Services.Configure<HostInfoViewModel>(builder.Configuration.GetSection("HostInfo"));
 var app = builder.Build();
 

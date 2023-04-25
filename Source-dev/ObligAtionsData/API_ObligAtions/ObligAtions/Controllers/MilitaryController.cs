@@ -1,27 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ObligAtions.Attributes;
 using ObligAtions.Interface;
+using ObligAtions.Repositories;
 using ObligAtions.ViewModel;
 
 namespace ObligAtions.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class HomeMenuController : ControllerBase
+    public class MilitaryController : ControllerBase
     {
-        private readonly IMenuItems _menuItemsRepository;
-        public HomeMenuController(IMenuItems menuItemsRepository)
+        private readonly IInfoObligAtion _infoOblig;
+        public MilitaryController(IInfoObligAtion obligAtion)
         {
-            _menuItemsRepository = menuItemsRepository;
+            _infoOblig = obligAtion;
         }
-        [HttpGet("GetMenuItems")]
-        [AuthenticationValidation]
-        public async Task<IActionResult> GetMenuItems(int UserID)
+
+        [HttpPost("InsertObligAtion")]
+        [AuthorizationValidation(Roles = "AUSC")]
+        public async Task<IActionResult> InsertObligAtion(ObligAtionsViewModel request)
         {
             DataResultViewModel<object> result = new DataResultViewModel<object>();
             result.StatusCode = StatusCodes.Status200OK;
             result.Description = ResultDescriptionViewModel.Success;
-            result.Data = await _menuItemsRepository.GetMenu(UserID);
+            result.Data = await _infoOblig.InsertInfoObligAtion(request);
             return Ok(result);
         }
     }

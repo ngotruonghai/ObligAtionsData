@@ -14,6 +14,7 @@ namespace ObligAtions.DependencyInjection
             builder.RegisterType<MenuItemsRepository>().As<IMenuItems>();
             builder.RegisterType<DapperRepositories>().As<IDapperExec>();
             builder.RegisterType<HistoryRepositories>().As<IHistory>();
+            builder.RegisterType<ObligAtionRepositories>().As<IInfoObligAtion>();
         }
     }
 }

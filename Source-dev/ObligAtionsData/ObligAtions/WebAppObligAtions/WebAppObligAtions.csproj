@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ObligAtions\**" />
+    <Content Remove="Views\ObligAtions\**" />
+    <EmbeddedResource Remove="Views\ObligAtions\**" />
+    <None Remove="Views\ObligAtions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\Shared\_Layout.cshtml~RF1277250c.TMP" />
   </ItemGroup>
 
@@ -14,10 +21,6 @@
     <PackageReference Include="Autofac" Version="7.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\ObligAtions\" />
   </ItemGroup>
 
 </Project>

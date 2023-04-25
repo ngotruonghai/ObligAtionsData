@@ -27,7 +27,8 @@ namespace WebAppObligAtions.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMilitary(ObligAtionsModel request)
         {
-            return Json("");
+            request.UserID = _api.GetSession(SessionInfo.SessionUserID);
+            return Json(await _api.PostAPI("api/Military/InsertObligAtion", request));
         }
         #endregion
     }

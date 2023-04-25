@@ -2,6 +2,7 @@
 {
     public class ObligAtionsModel
     {
+        public string? UserID { get; set; }
         public string? FullnameBirth { get; set; }
         public string? FullnameCommon { get; set; }
         public string? Birthday { get; set; }

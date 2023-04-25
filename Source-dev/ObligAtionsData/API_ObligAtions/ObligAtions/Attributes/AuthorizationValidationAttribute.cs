@@ -70,7 +70,7 @@ namespace ObligAtions.Attributes
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 //var accountId = int.Parse(jwtToken.Claims.First(x => x.role == "role").Value);
                 var roles = jwtToken.Claims.Where(c => c.Type == "role").Select(c => c.Value).ToList();
-                string username = jwtToken.Claims.FirstOrDefault(c => c.Type == "UserName").Value.ToString();
+                string username = jwtToken.Claims.FirstOrDefault(c => c.Type == "UserID").Value.ToString();
 
                 foreach (var i in roles)
                 {

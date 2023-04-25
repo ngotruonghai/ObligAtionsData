@@ -38,6 +38,7 @@ namespace ObligAtions.Repositories
                 //    new Claim("Password",request.Password),
                 //};
                 claims.Add(new Claim("UserName", request.UserName));
+                claims.Add(new Claim("UserID", data.ID));
                 //claims.Add(new Claim("Password", request.Password));
 
                 DataTable dataPermission = await GetUserInfoPermission(data.UserName, data.FullName);
@@ -86,13 +87,29 @@ namespace ObligAtions.Repositories
                 CheckUserInfoViewModel createUser = new CheckUserInfoViewModel();
                 DataTable datalistUser = (await _dapper.ExecQueryAsyncDataSet("GetListUser")).Tables[0];
 
+
+
+
                 for (int i = 0; i < datalistUser.Rows.Count; i++)
                 {
-                    if (user.UserName == datalistUser.Rows[i]["UserName"].ToString() && user.Password == Secirity.Decrypt(datalistUser.Rows[i]["Password"].ToString(), "FPT"))
+                    //Kiểm tra Trang thái đăng nhập User
+                    if (_userConnect.StatusLogin == "1")
                     {
-                        createUser.UserName = datalistUser.Rows[i]["UserName"].ToString();
-                        createUser.FullName = datalistUser.Rows[i]["FullName"].ToString();
-                        createUser.ID = datalistUser.Rows[i]["ID"].ToString();
+                        if (user.UserName == datalistUser.Rows[i]["UserName"].ToString())
+                        {
+                            createUser.UserName = datalistUser.Rows[i]["UserName"].ToString();
+                            createUser.FullName = datalistUser.Rows[i]["FullName"].ToString();
+                            createUser.ID = datalistUser.Rows[i]["ID"].ToString();
+                        }
+                    }
+                    else 
+                    {
+                        if (user.UserName == datalistUser.Rows[i]["UserName"].ToString() && user.Password == Secirity.Decrypt(datalistUser.Rows[i]["Password"].ToString(), "FPT"))
+                        {
+                            createUser.UserName = datalistUser.Rows[i]["UserName"].ToString();
+                            createUser.FullName = datalistUser.Rows[i]["FullName"].ToString();
+                            createUser.ID = datalistUser.Rows[i]["ID"].ToString();
+                        }
                     }
                 }
                 return createUser;

@@ -2,6 +2,8 @@
 {
     public class ObligAtionsViewModel
     {
+        public string? UserID { get; set; }
+        public string? TicektCode { get; set; }
         public string? FullnameBirth { get; set; }
         public string? FullnameCommon { get; set; }
         public string? Birthday { get; set; }
@@ -41,9 +43,13 @@
         public string? WifeHusJob { get; set; }
         public string? WifeHusBaby { get; set; }
         public string? FamilyBaby { get; set; }
-        public string? FamilySex { get; set; }
         public string? FamilyNumber { get; set; }
         public string? CreateBy { get; set; }
         public string? UpdateBy { get; set; }
+        public string? FatherJob { get; set; }
+        public string? MotherJob { get; set; }
+        public string? FamilyChildGrild { get; set; }
+        public string? FamilyChildBoy { get; set; }
+        public string? FamilySelf { get; set; }
     }
 }
