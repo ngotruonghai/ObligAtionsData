@@ -1,0 +1,244 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_FunctionLayout";
+
+}
+
+<div class="row">
+    <div id="grid"></div>
+</div>
+<!-- Modal -->
+<div class="container">
+    <div class="modal fade" id="myModals" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body">
+                        <div class="k-d-flex k-justify-content-center" style="padding-top: 54px;">
+                            <div class="k-w-300">
+                                <label for="orders">Tìm kiếm danh mục</label>
+                                <input id="orders" style="width:250px" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:5px">
+                            <div id="GridMenu"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnclose">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GetDataGrid();
+    })
+    $("#click").click(function () {
+        //alert();
+
+    })
+    $("#btnclose").click(function () {
+        $("#GridMenu").html('');
+    })
+    function GetDataGrid() {
+        $.ajax({
+            url: '/User/GetInfoUser',
+            dataType: "json",
+            type: "GET",
+            dataType: "json",
+            type: "GET",
+            async: true,
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                var result = JSON.parse(data);
+                if (result.length > 0) {
+                    $("#grid").kendoGrid({
+                        columns: [
+                            { field: "UserName", title: "User", width: 100 },
+                            { field: "FullName", title: "Họ tên", width: 200 },
+                            {
+                                field: "functionUpadte",
+                                title: "Cập nhật",
+                                width: 150,
+                                template: function (row) {
+                                    return '<i style="cursor: pointer;" class="fa fa-edit btn-sm btn-success PermissionUpdate" title="Cập nhật"></i>'
+                                }
+                            },
+                            {
+                                field: "Permission",
+                                title: "Phân quyền",
+                                width: 150,
+                                template: function (row) {
+                                    return '<i style="cursor: pointer;" class="fa fa-address-card" title="Phân quyền" data-toggle="modal" data-target="#myModals" onClick="LoadPageUpdate(' + row.ID + ')"></i>'
+                                }
+                            }
+                        ],
+                        pageable: true,
+                        toolbar: ["search"],
+                        height: 550,
+                        sortable: {
+                            mode: "mixed",
+                            allowUnsort: true,
+                            showIndexes: true
+                        },
+                        toolbar: ["excel", "search"],
+                        excel: {
+                            fileName: "Danh sách User.xlsx",
+                            allPages: true
+                        },
+                        columnMenu: {
+                            messages: {
+                                columns: "Chọn cột",
+                                sortAscending: "Thứ tự tăng (asc)",
+                                sortDescending: "Thứ tự giảm (desc)",
+                            }
+                        },
+                        sortable: true,
+                        pageable: true,
+                        //groupable: true,
+                        filterable: true,
+                        columnMenu: true,
+                        //reorderable: true,
+                        resizable: true,
+                        pageable: {
+                            pageSizes: ["all", 5, 10, 20, 30, 40, 50],
+                            buttonCount: 10,
+                            messages: {
+                                display: " Hiển thị {0} - {1} trên tổng {2} dòng dữ liệu",
+                                empty: "Không có dữ liệu hiển thị",
+                                itemsPerPage: "Dòng mỗi trang"
+                            }
+                        },
+                        dataSource: {
+                            data: result,
+                            pageSize: 10, // The number of items displayed per page
+                            page: 1 // Page 2 will be opened by default when the Grid loads.
+                        }
+                    });
+                }
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        })
+    }
+    function LoadPageUpdate(userid) {
+        //$("#myModals").modal("show");
+        $("#GridMenu").html('');
+        LoadListMenu(userid);
+    }
+    function LoadListMenu(userid) {
+        var data1;
+        var data2;
+        var data3;
+        $.ajax({
+            url: "/Home/GetMenuItemsUser?UserID=" + userid,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                var result = JSON.parse(data);
+                data1 = result['table1'];
+                data2 = result['table2'];
+                data3 = result['table3'];
+                $("#orders").kendoDropDownList({
+                    dataSource: {
+                        data: data1
+                    },
+                    height: 520,
+                    dataTextField: "name",
+                    dataValueField: "id",
+                });
+                if (data1.length) {
+                    test();
+                }
+            }
+        });
+        $("#orders").change(function () {
+            test();
+        });
+        function test() {
+            var parentID = $("#orders").data("kendoDropDownList").value();
+            $("#GridMenu").html('');
+            var UserID = $("#orders").data("kendoDropDownList").value();
+            $("#GridMenu").kendoGrid({
+                columns: [
+                    { field: "name", title: "Tên danh mục" },
+                    {
+                        field: "Permission",
+                        title: "Phân quyền",
+                        width: 150,
+                        template: function (row) {
+                            var check = data3.filter(x => x.id == row.id);
+                            if (check.length > 0) {
+                                return ' <input class="form-check-input" type="checkbox" value="" onClick="checkpoermission(' + userid + ',' + row.id + ',' + parentID + ')" id="check' + row.id + '" checked>';
+                            }
+                            else {
+                                return ' <input class="form-check-input" type="checkbox" value="" onClick="checkpoermission(' + userid + ',' + row.id + ',' + parentID + ')" id="check' + row.id + '">';
+                            }
+                        }
+                    }
+                ],
+                pageable: true,
+                toolbar: ["search"],
+                height: 300,
+                sortable: {
+                    mode: "mixed",
+                    allowUnsort: true,
+                    showIndexes: true
+                },
+                toolbar: ["search"],
+                sortable: true,
+                pageable: true,
+                filterable: true,
+                columnMenu: true,
+                resizable: true,
+                dataSource: {
+                    data: data2.filter(x => x.parent == UserID),
+                    pageSize: 5,
+                    page: 1
+                }
+            });
+        }
+    }
+    function checkpoermission(UserID, MenuID, ParentID) {
+        var IDcheck = "#check" + MenuID;
+        var flag;
+        if ($(IDcheck).is(":checked")) {
+            flag = 1;
+        }
+        else {
+            flag = 0;
+        }
+        $.ajax({
+            url: '/User/CreateUserMenuPermission',
+            dataType: "json",
+            type: "POST",
+            data: {
+                UserID: UserID,
+                MenuItemsID: MenuID,
+                ParentID: ParentID,
+                Flag: flag,
+            },
+            async: false,
+            cache: false,
+            success: function (data) {
+                if (data == 'True') {
+
+                }
+                else {
+                    alert("Lỗi không có Quyền");
+                }
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        })
+    }
+
+</script>

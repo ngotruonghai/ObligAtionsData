@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_FunctionLayout";
+}
+<div class="row">
+    <div class="form-group">
+        <label>User đăng nhập</label>
+        <input type="text" class="form-control" id="txtUser" aria-describedby="emailHelp" placeholder="User">
+    </div>
+    <div class="form-group">
+        <label>Họ tên</label>
+        <input type="text" class="form-control" id="txtUserName" placeholder="Họ tên">
+    </div>
+    <button class="btn btn-primary" id="btn">Tạo User</button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#btn").click(function (e) {
+            if ($("#txtUser").val().length <= 0) {
+                alert('Chưa nhập User');
+                $("#txtUser").focus();
+                return;
+            }
+            if ($("#txtUserName").val().length <= 0) {
+                alert('Chưa nhập họ và tên');
+                $("#txtUserName").focus();
+                return;
+            }
+            $.ajax({
+                url: '/User/CreateInfoUser',
+                dataType: "json",
+                type: "POST",
+                data: {
+                    UserName: $("#txtUser").val(),
+                    FullName: $("#txtUserName").val()
+                },
+                async: false,
+                cache: false,
+                success: function (data) {
+                    //var result = JSON.parse(data);
+                    //console.log(result.statusCode);
+                    console.log(data);
+                    if (data == 'True') {
+                        alert('Tạo thành công');
+                        $("#txtUser").val('');
+                        $("#txtUserName").val('');
+                    }
+                    else {
+                        alert('Tạo không thành công hoặc chưa có quyền tạo');
+                    }
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            })
+        });
+    });
+
+
+</script>

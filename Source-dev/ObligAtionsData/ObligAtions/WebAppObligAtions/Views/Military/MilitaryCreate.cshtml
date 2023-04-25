@@ -1,0 +1,425 @@
+﻿@{
+    Layout = "_FunctionLayout";
+}
+<style>
+    .fontName {
+        font-weight: normal;
+    }
+
+    .row {
+        margin-top: 10px;
+    }
+</style>
+<h2 style="text-align: center;">Nhập thông tin quân dân</h2>
+<hr>
+<div class="container" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-3 fontName">Họ, chữ đệm và tên khai sinh: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtFullnameBirth" name="" value="Họ và tên khai sinh">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Họ, chữ đệm và tên thường dùng: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtFullnameCommon" name="" value="Họ, chữ đệm và tên thường dùng">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Ngày tháng năm sinh: </div>
+        <div class="col-md-5">
+            <input id="txtBirthday" value="01/01/1999" title="datepicker" class="form-control" />
+        </div>
+        <div class="col-md-2 fontName">Giới tính : </div>
+        <div class="col-md-2 fontName">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="RadioSex" id="txtRadioSex1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Nam
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="RadioSex" id="txtRadioSex2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Nữ
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Số CMND hoặc Số thẻ căn cước, (số ĐDCN): </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtCMND" name="text"
+                   value="Số CMND hoặc Số thẻ căn cước, (số ĐDCN)">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nơi đăng ký khai sinh: </div>
+        <div class="col-md-9">
+            <textarea type="text" class="form-control" id="txtBirthRegistration" name="text"
+                      value="Nơi đăng ký khai sinh"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Quê quán</div>
+        <div class="col-md-9">
+            <textarea type="text" class="form-control" id="txtCountryside" name="text" value="Quê quán"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Dân tộc: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtNation" name="text" value="Dân tộc">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Tôn giáo: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtReligion" name="text" value="Tôn giáo">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Quốc tịch: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtNationality" name="text" value="Quốc tịch">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nơi thường trú của gia đình: </div>
+        <div class="col-md-9">
+            <textarea type="text" class="form-control" id="txtFamilyResidence" name="text"
+                      value="Nơi thường trú của gia đình"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nơi ở hiện tại của bản thân: </div>
+        <div class="col-md-9">
+            <textarea type="text" class="form-control" id="txtMyCurrentResidence" name="text"
+                      value="Nơi ở hiện tại của bản thân"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Thành phần gia đình: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtFamilyMember" name="text" value="Thành phần gia đình">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Bản thân: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtSelf" name="text" value="Bản thân">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Trình độ học vấn: </div>
+        <div class="col-md-5">
+            <input type="text" class="form-control" id="txtLearnLevel" name="text" value="Trình độ học vấn">
+        </div>
+        <div class="col-md-2 fontName">Năm tốt nghiệp: </div>
+        <div class="col-md-2">
+            <input type="text" class="form-control" id="txtGraduationYear" name="text" value="Năm tốt nghiệp">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Ngành nghề đào tạo: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtJobTrainingFields" name="text" value="Ngành nghề đào tạo">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Trình độ ngoại ngữ: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtEnglishLevel" name="text" value="Trình độ ngoại ngữ">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Ngày vào Đảng CSVN: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtCSVN" title="datepicker" name="text" value="Ngày vào Đảng CSVN">
+        </div>
+        <div class="col-md-2 fontName">Chính thức: </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtCSVNOfficial" title="datepicker" name="text" value="Chính thức">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Ngày vào Đoàn TNCS Hồ Chí Minh: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtTNCS" title="datepicker" name="text" value="Ngày vào Đoàn TNCS Hồ Chí Minh"> date
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Khen thưởng: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtBonus" name="text" value="NKhen thưởng">
+        </div>
+        <div class="col-md-2 fontName">Kỷ Luật: </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtDiscipline" name="text" value="Kỷ Luật">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nghề nghiệp: </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtJob" name="text" value="Nghề nghiệp">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Lương ngạch: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtGrade" name="text" value="Lương ngạch">
+        </div>
+        <div class="col-md-2 fontName">Bậc: </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtJobLevel" name="text" value="bậc">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nơi làm việc (học tập): </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="txtPlaceWorkStudy" name="text" value="Nơi làm việc (học tập)">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-3 fontName">Họ tên cha: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtFatherFullName" name="text" value="Họ tên cha">
+        </div>
+        <div class="col-md-2 fontName">(Sống,chết) : </div>
+        <div class="col-md-2 fontName">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="RadioFatherInformation" id="txtFatherInformation1">
+                <label class="form-check-label" for="txtFatherInformation1">
+                    Sống
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="RadioFatherInformation" id="txtFatherInformation2">
+                <label class="form-check-label" for="txtFatherInformation2">
+                    Chết
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nghề nghiệp: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtFatherJob" name="text" value="Nghề nghiệp">
+        </div>
+        <div class="col-md-2 fontName">Sinh năm: </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtFatherBirthDay" title="datepicker" name="text" value="Sinh năm">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-3 fontName">Họ tên Mẹ: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtMotherFullName" name="text" value="Họ tên mẹ">
+        </div>
+        <div class="col-md-2 fontName">(Sống,chết) : </div>
+        <div class="col-md-2 fontName">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="RadioMotherformations" id="txtMotherformations1">
+                <label class="form-check-label" for="txtMotherformations1">
+                    Sống
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="RadioMotherformations" id="txtMotherformations2">
+                <label class="form-check-label" for="txtMotherformations2">
+                    Chết
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nghề nghiệp: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtMotherJob" name="text" value="Nghề nghiệp">
+        </div>
+        <div class="col-md-2 fontName">Sinh năm: </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtMotherBirthDay" title="datepicker" name="text" value="Sinh năm">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-3 fontName">Họ tên vợ (chồng): </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtWifeHusbandName" name="text" value="Họ tên vợ (chồng)">
+        </div>
+        <div class="col-md-2 fontName">Sinh năm: </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtWifeHusband" title="datepicker" name="text">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Nghề nghiệp: </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtWifeHusJob" name="text" value="Nghề nghiệp">
+        </div>
+        <div class="col-md-3 fontName">Bản thân đã có mấy con: </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" id="txtWifeHusBaby" name="text" value="Bản thân đã có mấy con">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 fontName">Cha mẹ có mấy người con: </div>
+
+        <div class="col-md-1">
+            Nam
+        </div>
+        <div class="col-md-1">
+            <input type="number" class="form-control" id="txtFamilyChildBoy" name="text" value="">
+        </div>
+
+        <div class="col-md-1">
+            Nữ
+        </div>
+        <div class="col-md-1">
+            <input type="number" class="form-control" id="txtFamilyChildGrild" name="text" value="">
+        </div>
+
+        <div class="col-md-3">
+            Bản thân là con thứ mấy
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" id="txtFamilySelf" name="text" value="">
+        </div>
+
+    </div>
+    <div class="row" style="margin-top: 10px;">
+
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <button style="text-align: center;" type="button" id="btnAdd" class="btn btn-primary">Hoàng thành</button>
+            <button style="text-align: center;" type="button" class="btn btn-danger">Hủy</button>
+        </div>
+    </div>
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+</div>
+<script>
+    $(document).ready(function () {
+        $("#txtBirthday").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true
+        });
+        $("#txtCSVN").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true
+        });
+        $("#CSVNOfficial ").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true
+        });
+        $("#txtTNCS").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true
+        });
+        $("#txtMotherBirthDay").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true
+        });
+        $("#txtFatherBirthDay").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true
+        });
+        $("#txtWifeHusband").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true
+        });
+    });
+    $("#btnAdd").click(function (e) {
+        var sexValues;
+        var sexMother;
+        var father;
+        if ($("#txtRadioSex1").is(":checked")) {
+            sexValues = 1;
+        }
+        else {
+            sexValues = 0;
+        }
+
+        if ($("#txtMotherformations1").is(":checked")) {
+            sexMother = 1;
+        }
+        else {
+            sexMother = 0;
+        }
+
+        if ($("#txtFatherInformation1").is(":checked")) {
+            father = 1;
+        }
+        else {
+            father = 0;
+        }
+
+
+        $.ajax({
+            url: '/Military/CreateMilitary',
+            dataType: "json",
+            type: "POST",
+            data: {
+                FullnameBirth: $("#txtFullnameBirth").val(),
+                FullnameCommon: $("#txtFullnameCommon").val(),
+                Birthday: $("#txtBirthday").val(),
+                Sex: sexValues,
+                CMND: $("#txtCMND").val(),
+                BirthRegistration: $("#txtBirthRegistration").val(),
+                Countryside: $("#txtCountryside").val(),
+                Nation: $("#txtNation").val(),
+                Religion: $("#txtReligion").val(),
+                Nationality: $("#txtNationality").val(),
+                FamilyResidence: $("#txtFamilyResidence").val(),
+                MyCurrentResidence: $("#txtMyCurrentResidence").val(),
+                FamilyMember: $("#txtFamilyMember").val(),
+                Self: $("#txtSelf").val(),
+                LearnLevel: $("#txtLearnLevel").val(),
+                GraduationYear: $("#txtGraduationYear").val(),
+                JobTrainingFields: $("#txtJobTrainingFields").val(),
+                EnglishLevel: $("#txtEnglishLevel").val(),
+                CSVN: $("#txtCSVN").val(),
+                CSVNOfficial: $("#txtCSVNOfficial").val(),
+                TNCS: $("#txtTNCS").val(),
+                Bonus: $("#txtBonus").val(),
+                Discipline: $("#txtDiscipline").val(),
+                Job: $("#txtJob").val(),
+                Wage: $("#txtWage").val(),
+                Grade: $("#txtGrade").val(),
+                JobLevel: $("#txtJobLevel").val(),
+                PlaceWorkStudy: $("#txtPlaceWorkStudy").val(),
+                FatherFullName: $("#txtFatherFullName").val(),
+                FatherInformation: father,
+                FatherBirthDay: $("#txtFatherBirthDay").val(),
+                MotherFullName: $("#txtMotherFullName").val(),
+                Motherformations: sexMother,
+                MotherBirthDay: $("#txtMotherBirthDay").val(),
+                WifeHusbandName: $("#txtWifeHusbandName").val(),
+                WifeHusband: $("#txtWifeHusband").val(),
+                WifeHusJob: $("#txtWifeHusJob").val(),
+                WifeHusBaby: $("#txtWifeHusBaby").val(),
+                FamilyBaby: $("#txtFamilyBaby").val(),
+                FamilyNumber: $("#txtFamilyNumber").val(),
+                CreateBy: $("#txtCreateBy").val(),
+                UpdateBy: $("#txtUpdateBy").val(),
+                FatherJob: $("#txtFatherJob").val(),
+                MotherJob: $("#txtMotherJob").val(),
+                FamilyChildGrild: $("#txtFamilyChildGrild").val(),
+                FamilyChildBoy: $("#txtFamilyChildBoy").val(),
+                FamilySelf: $("#txtFamilySelf").val(),
+
+            },
+            async: false,
+            cache: false,
+            success: function (data) {
+
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        })
+    });
+</script>

@@ -1,0 +1,16 @@
+alter PROC CreateHistory
+@ResourceName Varchar(50),
+@Desc Nvarchar(200),
+@UserID int,
+@Type int
+as
+begin
+	INSERT INTO [dbo].[History]
+           ([RouteName]
+           ,[Description]
+           ,[CreateDate]
+           ,[UserID]
+           ,[Type])
+     VALUES
+           (@ResourceName,@Desc,getdate(),@UserID,@Type)
+end
