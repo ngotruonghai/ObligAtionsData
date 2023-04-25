@@ -15,7 +15,7 @@ namespace ObligAtions.Controllers
             _menuItemsRepository = menuItemsRepository;
         }
         [HttpGet("GetMenuItems")]
-        [AuthenticationValidation]
+        //[AuthenticationValidation]
         public async Task<IActionResult> GetMenuItems(int UserID)
         {
             DataResultViewModel<object> result = new DataResultViewModel<object>();
