@@ -8,11 +8,14 @@ namespace WebAppObligAtions.Controllers
 
     public class UserController : Controller
     {
+        /* /User/Index */
         private readonly IServicesAPI _api;
         public UserController(IServicesAPI servicesAPI)
         {
             _api = servicesAPI;
         }
+
+        #region View
         public IActionResult Index()
         {
             return View();
@@ -25,6 +28,7 @@ namespace WebAppObligAtions.Controllers
         {
             return PartialView();
         }
+        #endregion       
         #region Json
         [HttpGet]
         public async Task<JsonResult> GetInfoUser()
@@ -47,6 +51,17 @@ namespace WebAppObligAtions.Controllers
         public async Task<JsonResult> CreateUserMenuPermission(CreateUserPermissionModel request)
         {
             return Json(await _api.PostAPI("api/UserInfo/CreateMenuItemsPer", request));
+        }
+
+        /// <summary>
+        /// Lấy danh sách Branch
+        /// Get: /User/GetBranch 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<JsonResult> GetBranch()
+        {
+            return Json(await _api.GetAPI("api/LocationBranch/GetBranch"));
         }
         #endregion
     }

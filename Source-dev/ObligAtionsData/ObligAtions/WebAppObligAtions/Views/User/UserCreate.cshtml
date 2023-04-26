@@ -2,16 +2,25 @@
     ViewData["Title"] = "Home Page";
     Layout = "_FunctionLayout";
 }
-<div class="row">
-    <div class="form-group">
-        <label>User đăng nhập</label>
-        <input type="text" class="form-control" id="txtUser" aria-describedby="emailHelp" placeholder="User">
+<div class="container formCreate">
+    <div class="row">
+        <div class="form-group">
+            <label>Họ tên</label>
+            <input type="text" class="form-control" id="txtUserName" placeholder="Họ tên" style="width:300px">
+        </div>
+
+        <div class="form-group">
+            <label>User đăng nhập</label>
+            <input disabled type="text" class="form-control" id="txtUser" aria-describedby="emailHelp" placeholder="User" style="width:300px">
+        </div>
+
+        <div class="form-group">
+            <label>Khu phố : </label>
+            <select id="fBranch">
+            </select>
+        </div>
+        <button class="btn btn-primary" id="btn">Tạo User</button>
     </div>
-    <div class="form-group">
-        <label>Họ tên</label>
-        <input type="text" class="form-control" id="txtUserName" placeholder="Họ tên">
-    </div>
-    <button class="btn btn-primary" id="btn">Tạo User</button>
 </div>
 
 <script>
@@ -32,15 +41,13 @@
                 dataType: "json",
                 type: "POST",
                 data: {
+                    BranchCode: $("#fBranch option:selected").val(),
                     UserName: $("#txtUser").val(),
                     FullName: $("#txtUserName").val()
                 },
                 async: false,
                 cache: false,
                 success: function (data) {
-                    //var result = JSON.parse(data);
-                    //console.log(result.statusCode);
-                    console.log(data);
                     if (data == 'True') {
                         alert('Tạo thành công');
                         $("#txtUser").val('');
@@ -55,7 +62,54 @@
                 }
             })
         });
+        $('#txtUserName').on('input', function () {
+            var UserName = $("#txtUserName").val().trim();
+            $("#txtUser").val(removeAccents(UserName));
+        });
+        LoadBranch();
     });
-
-
+    function LoadBranch() {
+        $.ajax({
+            url: '/User/GetBranch',
+            dataType: "json",
+            type: "GET",
+            async: false,
+            cache: false,
+            success: function (data) {
+                var _result = JSON.parse(data);
+                var _html = '';
+                for (var i = 0; i < _result.length; i++) {
+                    _html += '<option value=' + _result[i].BranchCode + '>' + _result[i].BranchName + '</option>'
+                }
+                $("#fBranch").html(_html);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        })
+    }
+    function removeAccents(str) {
+        var AccentsMap = [
+            "aàảãáạăằẳẵắặâầẩẫấậ",
+            "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+            "dđ", "DĐ",
+            "eèẻẽéẹêềểễếệ",
+            "EÈẺẼÉẸÊỀỂỄẾỆ",
+            "iìỉĩíị",
+            "IÌỈĨÍỊ",
+            "oòỏõóọôồổỗốộơờởỡớợ",
+            "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+            "uùủũúụưừửữứự",
+            "UÙỦŨÚỤƯỪỬỮỨỰ",
+            "yỳỷỹýỵ",
+            "YỲỶỸÝỴ"
+        ];
+        for (var i = 0; i < AccentsMap.length; i++) {
+            var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+            var char = AccentsMap[i][0];
+            str = str.replace(re, char);
+            str = str.replace(" ", "");
+        }
+        return str;
+    }
 </script>

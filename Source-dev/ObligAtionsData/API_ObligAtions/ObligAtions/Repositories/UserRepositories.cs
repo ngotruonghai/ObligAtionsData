@@ -37,11 +37,12 @@ namespace ObligAtions.Repositories
         {
             try
             {
-                string Password = createUserInfo.UserName + "123456789";
+                string Password = createUserInfo.UserName + "123";
                 var param = new DynamicParameters();
                 param.Add("@UserName", createUserInfo.UserName);
                 param.Add("@FullName", createUserInfo.FullName);
-                param.Add("@Password", Secirity.Encrypt(Password,"FPT"));
+                param.Add("@Password", Secirity.Encrypt(Password, "FPT"));
+                param.Add("@BranchCode", createUserInfo.BranchCode);
                 await _dapper.ExecQueryAsyncObj("CreateUserInfo", param);
                 return true;
             }

@@ -1,11 +1,13 @@
 ﻿using Autofac;
+using ObligAtions.Api.Interface;
+using ObligAtions.Api.Repositories;
 using ObligAtions.Interface;
 using ObligAtions.Repositories;
 using System.Reflection;
 
 namespace ObligAtions.DependencyInjection
 {
-    public class DependencyRegister: Autofac.Module
+    public class DependencyRegister : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -15,6 +17,7 @@ namespace ObligAtions.DependencyInjection
             builder.RegisterType<DapperRepositories>().As<IDapperExec>();
             builder.RegisterType<HistoryRepositories>().As<IHistory>();
             builder.RegisterType<ObligAtionRepositories>().As<IInfoObligAtion>();
+            builder.RegisterType<LocationBranchRepositories>().As<ILocationBranch>();
         }
     }
 }
