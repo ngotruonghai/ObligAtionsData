@@ -47,6 +47,11 @@ namespace WebAppObligAtions.Controllers
             return Json(await _api.GetAPI("api/HomeMenu/GetMenuItems?UserID=0"));
         }
 
+        /// <summary>
+        /// Phân Quyền cho User
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> CreateUserMenuPermission(CreateUserPermissionModel request)
         {
