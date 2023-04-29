@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "_FunctionLayout";
 }
+<link href="~/css/loading.css" rel="stylesheet" />
 <style>
     .fontName {
         font-weight: normal;
@@ -305,16 +306,128 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12 fontName" style="text-align:center;font-weight:bold">II. TÌNH HÌNH KINH TẾ, CHÍNH TRỊ CỦA GIA ĐÌNH</div>
+        <div class="col-md-12 fontName" style="text-align:center">
+            (Ghi đầy đủ của cha đẻ, mẹ đẻ hoặc người trực tiếp nuôi dưỡng của bản thân và của vợ hoặc chồng; anh chị em ruột; con đẻ, con nuôi theo quy định của pháp luật: Họ tên, năm sinh, nghề nghiệp, tình hình kinh tế, chính trị của từng người qua các thời k‎ỳ).
+        </div>
+    </div>
+    <div class="formCreate" style="margin-top:10px">
+        <label><strong>Thông tin của Cha</strong></label>
+        <div class="row">
+            <div class="col-md-3 fontName">Trước năm 1975: </div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtFatherBefore1975" name="text"
+                          placeholder="Trước năm 1975"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fontName">Sau năm 1975: </div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtFatherAfter1975" name="text"
+                          placeholder="Sau năm 1975"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fontName">Chỗ ở hiện nay: </div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtFatherLiveCurrently" name="text"
+                          placeholder="Chỗ ở hiện nay"></textarea>
+            </div>
+        </div>
+    </div>
 
-    <div class="row" style="margin-top: 10px; text-align:center">
+    <div class="formCreate" style="margin-top:10px">
+        <label><strong>Thông tin của Mẹ</strong></label>
+        <div class="row">
+            <div class="col-md-3 fontName">Trước năm 1975: </div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtMotherBefore1975" name="text"
+                          placeholder="Trước năm 1975"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fontName">Sau năm 1975: </div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtMotherAfter1975" name="text"
+                          placeholder="Sau năm 1975"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fontName">Chỗ ở hiện nay: </div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtMotherLiveCurrently" name="text"
+                          placeholder="Chỗ ở hiện nay"></textarea>
+            </div>
+        </div>
+    </div>
 
-        <button style="text-align: center;" type="button" id="btnAdd" class="btn btn-primary">Hoàn thành</button>
-        <button style="text-align: center;" type="button" class="btn btn-danger">Hủy</button>
+    <div class="formCreate" style="margin-top:10px">
+        <div class="row">
+            <div class="col-md-3 fontName">Anh chị ruột: </div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtSiblings" name="text"
+                          placeholder="Anh chị ruột"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 fontName" style="text-align:center;font-weight:bold">III. TÌNH HÌNH KINH TẾ, CHÍNH TRỊ, QUÁ TRÌNH CÔNG TÁC CỦA BẢN THÂN</div>
+        <div class="col-md-12 fontName" style="text-align:center">
+            Nêu thời gian, kết quả học tập, rèn luyện phấn đấu từ nhỏ đến thời điểm nhập ngũ)
+        </div>
+    </div>
+    <div class="formCreate" style="margin-top:10px">
+        <div class="row">
+            <div class="col-md-3 fontName">Từ 6 tuổi đến 11 tuổi:</div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtFromSixToEleven" name="text"
+                          placeholder="Từ 6 tuổi đến 11 tuổi"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fontName">Từ 12 tuổi đến 15 tuổi:</div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtFromTwelveToFifteen" name="text"
+                          placeholder="Từ 12 tuổi đến 15 tuổi:"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fontName">Từ 15 đến 18 tuổi:</div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtFromFteenToFiEighteen" name="text"
+                          placeholder="Từ 15 đến 18 tuổi:"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fontName">Từ 18 tuổi đến nay:</div>
+            <div class="col-md-9 fontName">
+                <textarea type="text" class="form-control" id="txtFromEighteen" name="text"
+                          placeholder="Từ 18 tuổi đến nay:"></textarea>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px;">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <table>
+                    <tr>
+                        <td><button style="text-align: center; margin-right:20px" type="button" id="btnAdd" class="btn btn-primary">Hoàn thành</button></td>
+                        <td><button style="text-align: center; margin-right:20px" type="button" class="btn btn-danger">Hủy</button></td>
+                        <td>  <div class="loader" id="loader"></div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     </div>
     <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 </div>
 <script>
     $(document).ready(function () {
+        $("#loader").hide();
         $("#txtBirthday").kendoDatePicker({
             format: "dd/MM/yyyy",
             dateInput: true,
@@ -357,10 +470,27 @@
         });
         $("#txtWifeHusband").data("kendoDatePicker").value(new Date());
     });
-    $("#btnAdd").click(function (e) {
+    $("#txtBirthRegistration,#txtFamilyResidence,#txtCountryside,#txtMyCurrentResidence").on("input", function () {
+        $(this).val($(this).val().replace(/\r?\n/g, ''));
+    });
+
+    $("#txtFatherBefore1975,#txtFatherAfter1975,#txtFatherLiveCurrently,#txtMotherBefore1975,#txtMotherAfter1975,#txtMotherLiveCurrently,#txtSiblings").on("input", function () {
+        $(this).val($(this).val().replace(/\r?\n/g, ''));
+    });
+
+    $("#txtFromSixToEleven,#txtFromTwelveToFifteen,#txtFromFteenToFiEighteen,#txtFromEighteen").on("input", function () {
+        $(this).val($(this).val().replace(/\r?\n/g, ''));
+    });
+
+    $("#btnAdd").click(function (e) {        
         var sexValues;
         var sexMother;
         var father;
+
+        if (CheckValidation() == false) {
+            return;
+        }
+
         if ($("#txtRadioSex1").is(":checked")) {
             sexValues = 1;
         }
@@ -381,8 +511,7 @@
         else {
             father = 0;
         }
-
-
+        $("#loader").show();
         $.ajax({
             url: '/Military/CreateMilitary',
             dataType: "json",
@@ -436,24 +565,101 @@
                 FamilyChildBoy: $("#txtFamilyChildBoy").val(),
                 FamilySelf: $("#txtFamilySelf").val(),
 
+                FatherBefore1975: $("#txtFatherBefore1975").val(),
+                FatherAfter1975: $("#txtFatherAfter1975").val(),
+                FatherLiveCurrently: $("#txtFatherLiveCurrently").val(),
+                MotherBefore1975: $("#txtMotherBefore1975").val(),
+                MotherAfter1975: $("#txtMotherAfter1975").val(),
+                MotherLiveCurrently: $("#txtMotherLiveCurrently").val(),
+                Siblings: $("#txtSiblings").val(),
+
+                FromSixToEleven: $("#txtFromSixToEleven").val(),
+                FromTwelveToFifteen: $("#txtFromTwelveToFifteen").val(),
+                FromFteenToFiEighteen: $("#txtFromFteenToFiEighteen").val(),
+                FromEighteen: $("#txtFromEighteen").val(),
             },
             async: false,
             cache: false,
             success: function (data) {
                 console.log(data)
                 if (data == 'True') {
-                    alert("Thêm thành công!")
+                    toastr.success("thêm thành công", "Thông báo");                    
+                    $("input:text").val("");
+                    $("#txtBirthRegistration,#txtFamilyResidence,#txtCountryside,#txtMyCurrentResidence").val("");
+                    $("#txtFatherBefore1975,#txtFatherAfter1975,#txtFatherLiveCurrently,#txtMotherBefore1975,#txtMotherAfter1975,#txtMotherLiveCurrently,#txtSiblings").val("");
+                    $("#txtFromSixToEleven,#txtFromTwelveToFifteen,#txtFromFteenToFiEighteen,#txtFromEighteen").val("");
                 }
                 else if (data == '401') {
-                    alert("Không có quyền thêm danh sách dân quân");
+                    toastr.error("Không có quyền thêm", "Thông báo");
                 }
                 else {
-                    alert("Thêm thất bại!")
+                    toastr.error("thêm thất bại", "Thông báo");
                 }
+                $("#loader").hide();
             },
             error: function (xhr) {
                 alert('error');
             }
         })
     });
+
+    /* ========== Function ========== */
+    function CheckValidation() {
+        if ($("#txtFullnameBirth").val().length <= 0) {
+            $("#txtFullnameBirth").focus();
+            toastr.warning("Họ, chữ đệm và tên khai sinh", "Thông báo")
+            return false;
+        }
+        if ($("#txtFullnameCommon").val().length <= 0) {
+            $("#txtFullnameCommon").focus();
+            toastr.warning("Chưa nhập họ, chữ đệm và tên thường dùng", "Thông báo")
+            return false;
+        }
+        if ($("#txtCMND").val().length <= 0) {
+            $("#txtCMND").focus();
+            toastr.warning("Chưa nhập CMND", "Thông báo")
+            return false;
+        }
+        if ($("#txtBirthRegistration").val().length <= 0) {
+            $("#txtBirthRegistration").focus();
+            toastr.warning("Chưa nhập nơi đăng ký khai sanh", "Thông báo")
+            return false;
+        }
+        if ($("#txtCountryside").val().length <= 0) {
+            $("#txtCountryside").focus();
+            toastr.warning("Chưa nhập quê quán", "Thông báo")
+            return false;
+        }
+        if ($("#txtNation").val().length <= 0) {
+            $("#txtNation").focus();
+            toastr.warning("Chưa nhập dân tộc", "Thông báo")
+            return false;
+        }
+        if ($("#txtReligion").val().length <= 0) {
+            $("#txtReligion").focus();
+            toastr.warning("Chưa nhập tôn giáo", "Thông báo")
+            return false;
+        }
+        if ($("#txtNationality").val().length <= 0) {
+            $("#txtNationality").focus();
+            toastr.warning("Chưa nhập quốc tịch", "Thông báo")
+            return false;
+        }
+        if ($("#txtFamilyResidence").val().length <= 0) {
+            $("#txtFamilyResidence").focus();
+            toastr.warning("Chưa nhập nơi thường trú gia đình", "Thông báo")
+            return false;
+        }
+        if ($("#txtMyCurrentResidence").val().length <= 0) {
+            $("#txtMyCurrentResidence").focus();
+            toastr.warning("Chưa nhập nơi ở hiện tại của bản thân", "Thông báo")
+            return false;
+        }
+        if ($("#txtFamilyMember").val().length <= 0) {
+            $("#txtFamilyMember").focus();
+            toastr.warning("Chưa nhập nơi ở hiện tại của bản thân", "Thông báo")
+            return false;
+        }
+        return true;
+    }
 </script>

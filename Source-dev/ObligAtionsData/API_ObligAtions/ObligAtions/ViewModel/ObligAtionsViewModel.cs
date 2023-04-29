@@ -51,5 +51,18 @@
         public string? FamilyChildGrild { get; set; }
         public string? FamilyChildBoy { get; set; }
         public string? FamilySelf { get; set; }
+
+        public string? FatherBefore1975 { get; set; }
+        public string? FatherAfter1975 { get; set; }
+        public string? FatherLiveCurrently { get; set; }
+        public string? MotherBefore1975 { get; set; }
+        public string? MotherAfter1975 { get; set; }
+        public string? MotherLiveCurrently { get; set; }
+        public string? Siblings { get; set; }
+
+        public string? FromSixToEleven { get; set; }
+        public string? FromTwelveToFifteen { get; set; }
+        public string? FromFteenToFiEighteen { get; set; }
+        public string? FromEighteen { get; set; }
     }
 }

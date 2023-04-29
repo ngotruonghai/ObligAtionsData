@@ -25,16 +25,20 @@ namespace ObligAtions.Repositories
             {
                 obligAtionsViewModel.TicektCode = TicketCode.RenderCode("QS");
                 obligAtionsViewModel.CMND = Secirity.Encrypt(obligAtionsViewModel.CMND, "FPT");
-                await _dapper.ExecQueryAsyncObj("InsertObligAtion", obligAtionsViewModel);
+                var list = await _dapper.ExecQueryAsyncObj("InsertObligAtion", obligAtionsViewModel);
+                if (list == null)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception ex)
             {
                 HistoryViewModel history = new HistoryViewModel()
                 {
-                    Desc= ex.Message,
-                    ResourceName= "InsertInfoObligAtion",
-                    type=2,
+                    Desc = ex.Message,
+                    ResourceName = "InsertInfoObligAtion",
+                    type = 2,
                     UserID = obligAtionsViewModel.UserID
                 };
                 _history.CreateHistory(history);
