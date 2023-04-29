@@ -62,12 +62,12 @@
                 cache: false,
                 success: function (data) {
                     if (data == 'True') {
-                        alert('Tạo thành công');
+                        toastr.success("Tạo thành công", "Thông báo")
                         $("#txtUser").val('');
                         $("#txtUserName").val('');
                     }
                     else {
-                        alert('Tạo không thành công hoặc chưa có quyền tạo');
+                        toastr.error("Tạo không thành công hoặc chưa có quyền tạo", "Thông báo")
                     }
                 },
                 error: function (xhr) {

@@ -4,7 +4,6 @@
 
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
 <div class="row" style="margin-top:30px">
     <div class="col-md-4"></div>
     <div class="col-md-4">
@@ -24,7 +23,7 @@
                     <label class="label">Mật Khẩu</label>
                 </div>
                 <div class="sign-up" id="lb_mess">
-                    <p style="color:red; font-size:13px">Sai tài khoản hoặc mật khẩu!</p>
+                    @*<p style="color:red; font-size:13px">Sai tài khoản hoặc mật khẩu!</p>*@
                 </div>
                 @* <div class="forgot-pass">
                 <a href="#">Forgot Password?</a>
@@ -39,9 +38,10 @@
     </div>
     <div class="col-md-4"></div>
 </div>
-<script>
+
+<script >
     $(document).ready(function () {
-        $("#lb_mess").hide();
+        toastr.options.timeOut = 1500; // 1.5s
         $("#btn_login").click(function (e) {
             $.ajax({
                 url: '/Login/LoginToken',
@@ -56,13 +56,12 @@
                 success: function (data) {
                     if (data == 0) {
                         // Login thất bại
-                        $("#lb_mess").show();
-                        alert("Sai tài khoản hoặc mật khẩu!");
+                        toastr.warning("Sai tài khoản hoặc mật khẩu", "Thông báo")
+                        alert("Sài tài khoản hoặc mật khẩu");
                     }
                     else {
                         // Login Thành công
                         e.preventDefault();
-                        $("#lb_mess").hide();
                         window.location.href = "/Home/Index";
                     }
                 },
@@ -72,6 +71,4 @@
             })
         });
     });
-
-
 </script>

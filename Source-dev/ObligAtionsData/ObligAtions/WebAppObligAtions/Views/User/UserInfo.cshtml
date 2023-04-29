@@ -230,10 +230,10 @@
             cache: false,
             success: function (data) {
                 if (data == 'True') {
-
+                    toastr.success("Cấp quyền thành công", "Thông báo")
                 }
                 else {
-                    alert("Lỗi không có Quyền");
+                    toastr.error("Lỗi không có Quyền", "Thông báo")
                 }
             },
             error: function (xhr) {
