@@ -21,6 +21,19 @@ namespace WebAppObligAtions.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Xem danh sách Quân Sự
+        /// Military/MilitaryList
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult MilitaryList()
+        {
+            DateTime date = DateTime.Now.AddDays(-30);
+            
+            ViewData["FormDate"] = date.ToString("dd/M/yyyy");
+            return View();
+        }
         #endregion
 
         #region JSON
@@ -29,6 +42,19 @@ namespace WebAppObligAtions.Controllers
         {
             request.UserID = _api.GetSession(SessionInfo.SessionUserID);
             return Json(await _api.PostAPI("api/Military/InsertObligAtion", request));
+        }
+
+        /// <summary>
+        /// Lấy danh sach quân sự theo UserID
+        /// Post: Military/TicketObligAtionUserID
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> TicketObligAtionUserID(TicketUserIDViewModel request)
+        {
+            request.UserID = _api.GetSession(SessionInfo.SessionUserID);
+            return Json(await _api.PostAPI("api/Military/TicketObligAtionUserID", request));
         }
         #endregion
     }

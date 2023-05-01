@@ -26,5 +26,16 @@ namespace ObligAtions.Controllers
             result.Data = await _infoOblig.InsertInfoObligAtion(request);
             return Ok(result);
         }
+
+        [HttpPost("TicketObligAtionUserID")]
+        [AuthorizationValidation(Roles = "AUSV")]
+        public async Task<IActionResult> TicketObligAtionUserID(TicketUserIDViewModel request)
+        {
+            DataResultViewModel<object> result = new DataResultViewModel<object>();
+            result.StatusCode = StatusCodes.Status200OK;
+            result.Description = ResultDescriptionViewModel.Success;
+            result.Data = await _infoOblig.TicketObligAtionUserID(request);
+            return Ok(result);
+        }
     }
 }

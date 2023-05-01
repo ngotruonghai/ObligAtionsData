@@ -28,6 +28,14 @@ namespace ObligAtions.Repositories
                 var list = await _dapper.ExecQueryAsyncObj("InsertObligAtion", obligAtionsViewModel);
                 if (list == null)
                 {
+                    HistoryViewModel history = new HistoryViewModel()
+                    {
+                        Desc = "Thêm không thành công",
+                        ResourceName = "InsertInfoObligAtion",
+                        type = 2,
+                        UserID = obligAtionsViewModel.UserID
+                    };
+                    await _history.CreateHistory(history);
                     return false;
                 }
                 return true;
@@ -41,8 +49,26 @@ namespace ObligAtions.Repositories
                     type = 2,
                     UserID = obligAtionsViewModel.UserID
                 };
-                _history.CreateHistory(history);
+                await _history.CreateHistory(history);
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Lấy danh sách quân sự theo UserID
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<object> TicketObligAtionUserID(TicketUserIDViewModel model)
+        {
+            try
+            {
+                var list = await _dapper.ExecQueryAsyncObj("TicketObligAtionUserID", model);
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

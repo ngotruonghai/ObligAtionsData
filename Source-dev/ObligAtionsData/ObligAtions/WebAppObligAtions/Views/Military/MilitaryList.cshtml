@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "_FunctionLayout";
+}
+<style>
+    .fontName {
+        font-weight: normal;
+    }
+
+    .row {
+        margin-top: 10px;
+    }
+
+    .formCreate {
+        background-color: #EEEEEE;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px
+    }
+</style>
+<h3 style="text-align:center; color:#0099FF; font-weight:700">Xem danh sách quân sự </h3>
+<div class="container-fluid">
+    <div class="formCreate">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4">Từ ngày: </div>
+                    <div class="col-md-8">
+                        <input style="width:150px" id="fFormDate" value="@ViewBag.FormDate" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4">Đến ngày: </div>
+                    <div class="col-md-8">
+                        <input style="width:150px" id="fToDate" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4">Trạng thái: </div>
+                    <div class="col-md-8">
+                        <select id="fStatus">
+                            <option value="0">Tất cả</option>
+                            <option value="2">Chưa duyệt</option>
+                            <option value="1">Duyệt</option>
+                            <option value="3">Làm lại</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center">
+            <button id="btnSreach" type="button" class="btn btn-primary" style="margin-top:20px">Tìm kiếm</button>
+        </div>
+    </div>
+    <div id="grid" style="margin-top:20px"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        LoadCombobox();
+    })
+
+    /*========== Event ==========*/
+    /*========== Click ==========*/
+    $("#btnSreach").click(function () {
+        LoadGrid();
+    })
+    /*========== Function ==========*/
+    function LoadCombobox() {
+        $("#fFormDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true,
+        });
+        $("#fToDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            dateInput: true,
+        });
+        $("#fToDate").data("kendoDatePicker").value(new Date());
+    }
+
+    function LoadGrid() {
+        $("#grid").html('');
+        $.ajax({
+            url: '/Military/TicketObligAtionUserID',
+            dataType: "json",
+            type: "POST",
+            data: {
+                UserID: "",
+                FormDate: $("#fFormDate").val(),
+                ToDate: $("#fToDate").val(),
+                Status: $("#fStatus option:selected").val(),
+            },
+            async: false,
+            cache: false,
+            success: function (data) {
+                var result = JSON.parse(data);
+                if (result.length > 0) {
+                    console.log("Đã có data");                    
+                    console.log(result);
+                    $("#grid").kendoGrid({
+                        columns: [
+                            { field: "TicketCode", title: "Mã hồ sơ", width: 100 },
+                            {
+                                field: "Status", title: "Trạng thái", width: 100,
+                                template: function (row) {
+
+                                    if (row.Status == 1) {
+                                        return 'Duyệt';
+                                    }
+                                    else if (row.Status == 2) {
+                                        return 'Chưa duyệt';
+                                    }
+                                    else {
+                                        return 'Làm lại';
+                                    }
+                                }
+                            },
+
+                            { field: "FullnameBirth", title: "Giới tính", width: 100 },
+                            { field: "Birthday", title: "Họ và tên", width: 100 },
+                            {
+                                field: "Sex", title: "Năm sinh", width: 100,
+                                template: function (row) {
+
+                                    if (row.Sex == 0) {
+                                        return 'Nữ';
+                                    }
+                                    else {
+                                        return 'Nam';
+                                    }
+                                }
+                            },
+
+                            { field: "CreateDate", title: "Ngày tạo", width: 100 },
+                            { field: "UpdateDate", title: "Ngày cập nhật", width: 100 },
+                        ],
+                        pageable: true,
+                        toolbar: ["search"],
+                        height: 500,
+                        sortable: {
+                            mode: "mixed",
+                            allowUnsort: true,
+                            showIndexes: true
+                        },
+                        toolbar: ["search"],
+                        sortable: true,
+                        pageable: true,
+                        filterable: true,
+                        columnMenu: true,
+                        resizable: true,
+                        dataSource: {
+                            data: result,
+                            pageSize: 10,
+                            page: 1
+                        }
+                    });
+                }
+            }
+        })
+    };
+</script>

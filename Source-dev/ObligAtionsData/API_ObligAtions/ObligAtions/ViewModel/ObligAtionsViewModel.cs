@@ -65,4 +65,12 @@
         public string? FromFteenToFiEighteen { get; set; }
         public string? FromEighteen { get; set; }
     }
+
+    public class TicketUserIDViewModel
+    {
+        public int UserID { get; set; }
+        public string? FormDate { get; set; }
+        public string? ToDate { get; set; }
+        public string? Status { get; set;}
+    }
 }
