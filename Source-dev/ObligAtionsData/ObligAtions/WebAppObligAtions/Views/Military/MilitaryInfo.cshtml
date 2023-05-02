@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "_FunctionLayout";
+}
+<style>
+    .formCreate {
+        background-color: #EEEEEE;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 10px
+    }
+</style>
+<div class="container">
+    <div class="row formCreate">
+        <div class="col-md-12">
+            <p style="text-align: center;font-size: 20px; color: orange;">
+                TicketCode: <label>@ViewBag.TicketCode</label>
+            </p>
+            <p style="text-align: center;">Họ và tên: Ngô Trường Hải</p>
+            <p style="text-align: center;; background-color: #FFCC99;">Đang chờ duyệt...</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 formCreate">
+            <fieldset>
+                <legend>Thông tin Ticket</legend>
+                <div class="row">
+                    <div class="col-md-4">Họ và tên: </div>
+                    <div class="col-md-6">Ngô Trường Hải</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Ngày tháng năm sinh: </div>
+                    <div class="col-md-6">04/08/1999</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Giới tính: </div>
+                    <div class="col-md-6">Nam</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Khu phố: </div>
+                    <div class="col-md-6">KP1</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">CMND/CCCD: </div>
+                    <div class="col-md-6">025781461</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Quốc tịch: </div>
+                    <div class="col-md-6">Việt Nam</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Tôn giáo: </div>
+                    <div class="col-md-6">Kinh</div>
+                </div>
+                <div class="row" style="margin-top: 10px; float: right;">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary">Cập nhật</button>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5 formCreate">
+            <fieldset>
+                <legend>Thông tin nhân sự</legend>
+                <div class="row">
+                    <div class="col-md-4">Người tạo: </div>
+                    <div class="col-md-6">Nguyễn văn A</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Khu phố: </div>
+                    <div class="col-md-6">KP2</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Ngày tạo: </div>
+                    <div class="col-md-6">02/05/2023</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Ngày cập nhật: </div>
+                    <div class="col-md-6">02/05/2023</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">Người duyệt mã: </div>
+                    <div class="col-md-6">Nguễn Văn B</div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row formCreate">
+        <div class="col-md-12">
+            <fieldset>
+                <legend>Lịch sử Ticket</legend>
+                Tets
+            </fieldset>
+        </div>
+    </div>
+</div>

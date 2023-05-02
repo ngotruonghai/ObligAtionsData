@@ -18,6 +18,7 @@ namespace ObligAtions.DependencyInjection
             builder.RegisterType<HistoryRepositories>().As<IHistory>();
             builder.RegisterType<ObligAtionRepositories>().As<IInfoObligAtion>();
             builder.RegisterType<LocationBranchRepositories>().As<ILocationBranch>();
+            builder.RegisterType<TicketRepositories>().As<ITicketInfo>();
         }
     }
 }

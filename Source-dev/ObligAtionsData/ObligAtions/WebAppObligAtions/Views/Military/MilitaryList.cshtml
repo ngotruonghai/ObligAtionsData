@@ -31,7 +31,9 @@
             </div>
             <div class="col-md-4">
                 <div class="row">
-                    <div class="col-md-4">Đến ngày: </div>
+                    <div class="col-md-4">
+                        Đến ngày:
+                    </div>
                     <div class="col-md-8">
                         <input style="width:150px" id="fToDate" />
                     </div>
@@ -97,31 +99,36 @@
             success: function (data) {
                 var result = JSON.parse(data);
                 if (result.length > 0) {
-                    console.log("Đã có data");                    
+                    console.log("Đã có data");
                     console.log(result);
                     $("#grid").kendoGrid({
                         columns: [
-                            { field: "TicketCode", title: "Mã hồ sơ", width: 100 },
+                            {
+                                field: "TicketCode", title: "Mã hồ sơ", width: 100,
+                                template: function (row) {
+                                    return '<p><a href="/Military/MilitaryInfo?TicketCode='+row.TicketCode+'" target="_blank">' + row.TicketCode + '</a></p>'
+                                }
+                            },
                             {
                                 field: "Status", title: "Trạng thái", width: 100,
                                 template: function (row) {
 
                                     if (row.Status == 1) {
-                                        return 'Duyệt';
+                                        return ' <p style="text-align:center;border: 1px solid ;border-radius: 20px;background-color: #66CC99">Duyệt</p>';
                                     }
                                     else if (row.Status == 2) {
-                                        return 'Chưa duyệt';
+                                        return '<p style="text-align:center;border: 1px solid;border-radius: 20px;background-color: #EEEEEE">Chưa duyệt</p>';
                                     }
                                     else {
-                                        return 'Làm lại';
+                                        return '<p style="text-align:center;border: 1px solid;border-radius: 20px;background-color: #FFCC33">Làm lại</p>';
                                     }
                                 }
                             },
 
-                            { field: "FullnameBirth", title: "Giới tính", width: 100 },
-                            { field: "Birthday", title: "Họ và tên", width: 100 },
+                            { field: "FullnameBirth", title: "Họ và tên", width: 100 },
+                            { field: "Birthday", title: "Năm sinh", width: 100 },
                             {
-                                field: "Sex", title: "Năm sinh", width: 100,
+                                field: "Sex", title: "Giới tính", width: 100,
                                 template: function (row) {
 
                                     if (row.Sex == 0) {

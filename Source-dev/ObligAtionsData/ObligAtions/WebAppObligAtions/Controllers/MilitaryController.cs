@@ -30,8 +30,19 @@ namespace WebAppObligAtions.Controllers
         public IActionResult MilitaryList()
         {
             DateTime date = DateTime.Now.AddDays(-30);
-            
+
             ViewData["FormDate"] = date.ToString("dd/M/yyyy");
+            return View();
+        }
+
+        /// <summary>
+        /// Xem thông tin ticket
+        /// Military/MilitaryInfo?TicketCode=dsads
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult MilitaryInfo(string TicketCode)
+        {
+            ViewData["TicketCode"] = TicketCode;
             return View();
         }
         #endregion
