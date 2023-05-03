@@ -64,7 +64,6 @@ namespace ObligAtions.Middlewares
                     Desc = errorlog,
                     type = 0,
                     ResourceName = context.Request.Path,
-                    UserID = "Error Middlewares"
                 };                
                 // write to Logging Table                
                 await _history.CreateHistory(result);

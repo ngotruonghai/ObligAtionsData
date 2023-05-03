@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using Library.Base;
 using ObligAtions.Api.Interface;
 using ObligAtions.Interface;
+using System.Data;
 
 namespace ObligAtions.Api.Repositories
 {
@@ -19,14 +21,15 @@ namespace ObligAtions.Api.Repositories
         /// </summary>
         /// <param name="TicketCode"></param>
         /// <returns></returns>
-        public async Task<object> TicketInfo(string TicketCode)
+        public async Task<DataTable> TicketInfo(string TicketCode)
         {
             try
             {
                 var param = new DynamicParameters();
                 param.Add("@TicketCode", TicketCode);
-                var result = await _dapper.ExecQueryAsyncDataSet("TicketInfo", param);
-                return result;
+                DataTable data = (await _dapper.ExecQueryAsyncDataSet("TicketInfo", param)).Tables[0];
+                data.Rows[0]["cmnD1"] = Secirity.Decrypt(data.Rows[0]["cmnD1"].ToString(), "FPT");
+                return data;
             }
             catch (Exception ex)
             {

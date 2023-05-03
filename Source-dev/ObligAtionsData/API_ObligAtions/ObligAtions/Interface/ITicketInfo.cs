@@ -1,7 +1,9 @@
-﻿namespace ObligAtions.Api.Interface
+﻿using System.Data;
+
+namespace ObligAtions.Api.Interface
 {
     public interface ITicketInfo
     {
-        Task<object> TicketInfo(string TicketCode);
+        Task<DataTable> TicketInfo(string TicketCode);
     }
 }

@@ -67,6 +67,18 @@ namespace WebAppObligAtions.Controllers
             request.UserID = _api.GetSession(SessionInfo.SessionUserID);
             return Json(await _api.PostAPI("api/Military/TicketObligAtionUserID", request));
         }
+
+        /// <summary>
+        /// Lấy thông tin mã tikcet
+        /// Get: Military/TicketInfo?TicketCode=test
+        /// </summary>
+        /// <param name="TicketCode"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> TicketInfo(string TicketCode)
+        {
+            return Json(await _api.GetAPI($"api/Ticket/GetTicektInfo?TicketCode={TicketCode}"));
+        }
         #endregion
     }
 }

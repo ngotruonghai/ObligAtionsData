@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Library.Base;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using ObligAtions.Api.Interface;
+using ObligAtions.Attributes;
 using ObligAtions.ViewModel;
 
 namespace ObligAtions.Api.Controllers
@@ -12,10 +14,11 @@ namespace ObligAtions.Api.Controllers
         private readonly ITicketInfo _ticket;
         public TicketController(ITicketInfo ticketInfo)
         {
-            _ticket= ticketInfo;
+            _ticket = ticketInfo;
         }
 
         [HttpGet("GetTicektInfo")]
+        [AuthenticationValidation]
         public async Task<IActionResult> GetTicektInfo(string TicketCode)
         {
             DataResultViewModel<object> result = new DataResultViewModel<object>();

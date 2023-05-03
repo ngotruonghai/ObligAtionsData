@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Linq;
-using ObligAtions.Interface;
 using ObligAtions.Repositories;
 using ObligAtions.ViewModel;
 using System.IdentityModel.Tokens.Jwt;

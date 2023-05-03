@@ -13,10 +13,14 @@
     <div class="row formCreate">
         <div class="col-md-12">
             <p style="text-align: center;font-size: 20px; color: orange;">
-                TicketCode: <label>@ViewBag.TicketCode</label>
+                TicketCode: <label id="fTicketCode">@ViewBag.TicketCode</label>
             </p>
-            <p style="text-align: center;">Họ và tên: Ngô Trường Hải</p>
-            <p style="text-align: center;; background-color: #FFCC99;">Đang chờ duyệt...</p>
+            <p style="text-align: center;">Họ và tên: <label id="fFullName"></label></p>
+            <p style="text-align: center; background-color: #FF0066;" id="fStatus">Lỗi hệ thống</p>
+            <div style="text-align:center" id="btnEdit">
+                <button type="button" class="btn btn-primary" id="btnUpdate">Cập nhật</button>
+                <button type="button" class="btn btn-info" id="btnDetail">Xem chi tiết</button>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -25,37 +29,37 @@
                 <legend>Thông tin Ticket</legend>
                 <div class="row">
                     <div class="col-md-4">Họ và tên: </div>
-                    <div class="col-md-6">Ngô Trường Hải</div>
+                    <div class="col-md-6"><label id="fFullNames"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Ngày tháng năm sinh: </div>
-                    <div class="col-md-6">04/08/1999</div>
+                    <div class="col-md-6"><label id="fBirthday"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Giới tính: </div>
-                    <div class="col-md-6">Nam</div>
+                    <div class="col-md-6"><label id="fSex"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Khu phố: </div>
-                    <div class="col-md-6">KP1</div>
+                    <div class="col-md-6"><label id="fBracnchCode"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">CMND/CCCD: </div>
-                    <div class="col-md-6">025781461</div>
+                    <div class="col-md-6"><label id="fCMND"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Quốc tịch: </div>
-                    <div class="col-md-6">Việt Nam</div>
+                    <div class="col-md-6"><label id="fNationality"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Tôn giáo: </div>
-                    <div class="col-md-6">Kinh</div>
+                    <div class="col-md-6"><label id="fNation"></label></div>
                 </div>
-                <div class="row" style="margin-top: 10px; float: right;">
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary">Cập nhật</button>
-                    </div>
+                @* <div class="row" style="margin-top: 10px; float: right;">
+                <div class="col-md-12">
+                <button type="button" class="btn btn-primary">Cập nhật</button>
                 </div>
+                </div>*@
             </fieldset>
 
         </div>
@@ -65,24 +69,24 @@
                 <legend>Thông tin nhân sự</legend>
                 <div class="row">
                     <div class="col-md-4">Người tạo: </div>
-                    <div class="col-md-6">Nguyễn văn A</div>
+                    <div class="col-md-6"><label id="fNameUserCreate"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Khu phố: </div>
-                    <div class="col-md-6">KP2</div>
+                    <div class="col-md-6"><label id="fBranchUserCreate"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Ngày tạo: </div>
-                    <div class="col-md-6">02/05/2023</div>
+                    <div class="col-md-6"><label id="fCreateDate"></label></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">Ngày cập nhật: </div>
-                    <div class="col-md-6">02/05/2023</div>
+                    <div class="col-md-6"><label id="fUpdateDate"></label></div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-md-4">Người duyệt mã: </div>
-                    <div class="col-md-6">Nguễn Văn B</div>
+                    <div class="col-md-6"><label id="fNameUserConfirm"></label></div>
                 </div>
             </fieldset>
         </div>
@@ -96,3 +100,63 @@
         </div>
     </div>
 </div>
+<script>
+    var TicektCode = $("#fTicketCode").text();
+    $(document).ready(function () {
+        LoadPgae();
+    });
+    /*========== Event ==========*/
+
+    /*========== Click ==========*/
+
+    /*========== Function ==========*/
+    function LoadPgae() {
+        $.ajax({
+            url: '/Military/TicketInfo?TicketCode=' + TicektCode,
+            dataType: "json",
+            type: "GET",
+            async: false,
+            cache: false,
+            success: function (data) {
+                let result = JSON.parse(data);
+                let table = result;
+                if (table.length > 0) {
+                    console.log(table);
+                    $("#fFullName,#fFullNames").text(table[0].fullnameBirth);
+                    $("#fBirthday").text(table[0].birthday);
+                    $("#fBracnchCode").text(table[0].branchCode);
+                    $("#fNationality").text(table[0].fullnameBirth);
+                    $("#fCMND").text(table[0].cmnD1);
+                    $("#fNation").text(table[0].nation);
+                    $("#fNameUserCreate").text(table[0].nameUserCreate);
+                    $("#fBranchUserCreate").text(table[0].branchUserCreate);
+                    $("#fCreateDate").text(table[0].createDate);
+                    $("#fUpdateDate").text(table[0].updateDate);
+                    $("#fNameUserConfirm").text(table[0].nameUserConfirm);
+                    // Giới tính
+                    if (table[0].sex == "1") {
+                        $("#fSex").text("Nam");
+                    }
+                    else {
+                        $("#fSex").text("Nữ");
+                    }
+
+                    // Status
+                    if (table[0].status == "2") {
+                        $("#fStatus").text("Đang chờ duyệt...");
+                        $("#fStatus").css("background-color", "#FFCC99");
+                    }
+                    else if (table[0].status == "1") {
+                        $("#fStatus").text("Đã duyệt");
+                        $("#fStatus").css("background-color", "#66CC99");
+                        $("#btnUpdate").hide();
+                    }
+                    else if (table[0].status == "3") {
+                        $("#fStatus").text("Cập nhật lại...");
+                        $("#fStatus").css("background-color", "#FFCC33");
+                    }
+                }
+            }
+        })
+    }
+</script>
