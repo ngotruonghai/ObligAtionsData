@@ -27,6 +27,11 @@ namespace ObligAtions.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Lấy danh sách User
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("TicketObligAtionUserID")]
         [AuthorizationValidation(Roles = "AUSV")]
         public async Task<IActionResult> TicketObligAtionUserID(TicketUserIDViewModel request)

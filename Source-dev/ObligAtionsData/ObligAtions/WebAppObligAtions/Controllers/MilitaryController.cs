@@ -45,6 +45,18 @@ namespace WebAppObligAtions.Controllers
             ViewData["TicketCode"] = TicketCode;
             return View();
         }
+
+        /// <summary>
+        /// Xem thông tin và duyệt
+        /// Military/MilitaryInfo?MilitaryConfirm=dsads
+        /// </summary>
+        /// <param name="TicketCode"></param>
+        /// <returns></returns>
+        public IActionResult MilitaryConfirm(string TicketCode)
+        {
+            ViewData["TicketCode"] = TicketCode;
+            return View();
+        }
         #endregion
 
         #region JSON

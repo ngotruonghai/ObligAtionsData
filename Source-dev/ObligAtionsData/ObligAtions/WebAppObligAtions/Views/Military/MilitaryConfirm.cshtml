@@ -20,6 +20,9 @@
             <div style="text-align:center" id="btnEdit">
                 <button type="button" class="btn btn-primary" id="btnUpdate">Cập nhật</button>
                 <button type="button" class="btn btn-info" id="btnDetail">Xem chi tiết</button>
+
+                <button type="button" class="btn btn-warning" id="btnUpdateConfim">Làm lại</button>
+                <button type="button" class="btn btn-success" id="btnConfim">Duyệt</button>
             </div>
         </div>
     </div>
@@ -107,8 +110,59 @@
     });
     /*========== Event ==========*/
 
-    /*========== Click ==========*/
+    /*========== Click ========== btnUpdate*/
+    $("#btnUpdateConfim").click(function () {
+        $.ajax({
+            url: '/Statistic/TicektConfim',
+            dataType: "json",
+            type: "Post",
+            data: {
+                UserID: "",
+                Desc: "",
+                Status: 3,
+                TicketCode: TicektCode
+            },
+            async: false,
+            cache: false,
+            success: function (data) {
+                if (data == "True") {
+                    LoadPgae();
+                    toastr.success("Thành công", "Thông báo")
+                }
+                else {
+                    toastr.warning("Lỗi hệ thống", "Thông báo")
+                }
+            }
+        })
 
+
+    })
+    $("#btnConfim").click(function () {
+        $.ajax({
+            url: '/Statistic/TicektConfim',
+            dataType: "json",
+            type: "Post",
+            data: {
+                UserID: "",
+                Desc: "",
+                Status: 1,
+                TicketCode: TicektCode
+            },
+            async: false,
+            cache: false,
+            success: function (data) {
+                if (data == "True") {
+                    LoadPgae();
+                    toastr.success("Thành công", "Thông báo")
+                }
+                else {
+                    toastr.warning("Lỗi hệ thống", "Thông báo")
+                }
+            }
+        })
+
+
+    })
     /*========== Function ==========*/
     function LoadPgae() {
         $.ajax({
@@ -142,7 +196,7 @@
 
                     // Status
                     if (table[0].status == "2") {
-                        $("#fStatus").text("Đang chờ duyệt...");
+                        $("#fStatus").text("Đang chờ duyệt");
                         $("#fStatus").css("background-color", "#FFCC99");
                     }
                     else if (table[0].status == "1") {
@@ -151,8 +205,9 @@
                         $("#btnUpdate").hide();
                     }
                     else if (table[0].status == "3") {
-                        $("#fStatus").text("Cập nhật lại...");
+                        $("#fStatus").text("Cập nhật lại");
                         $("#fStatus").css("background-color", "#FFCC33");
+                        $("#btnUpdate").show();
                     }
                 }
             }

@@ -71,4 +71,11 @@
         public string? ToDate { get; set; }
         public string? Status { get; set; }
     }
+    public class TicketConfim
+    {
+        public int? UserID { get; set; }
+        public string? Desc { get; set; }
+        public int? Status { get; set; }
+        public string? TicketCode { get; set; }
+    }
 }

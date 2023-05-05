@@ -34,7 +34,8 @@ namespace ObligAtions.Controllers
         }
 
         [HttpGet("GetUserInfo")]
-        [AuthorizationValidationAttribute(Roles = "USI")]
+        //[AuthorizationValidationAttribute(Roles = "USI")]
+        [AuthenticationValidation]
         public async Task<IActionResult> GetUserInfo()
         {
             try

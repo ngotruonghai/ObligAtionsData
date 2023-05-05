@@ -54,7 +54,6 @@
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 var result = JSON.parse(data);
-                console.log(result);
                 if (result.length > 0) {
                     $("#grid").kendoGrid({
                         columns: [

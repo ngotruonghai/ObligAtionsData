@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Library.Base;
 using ObligAtions.Api.Interface;
+using ObligAtions.Api.ViewModel;
 using ObligAtions.Interface;
 using System.Data;
 
@@ -34,6 +35,25 @@ namespace ObligAtions.Api.Repositories
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Xác nhận 1 mmã ticket
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<bool> TicketConfim(TicketViewModel model)
+        {
+            try
+            {
+                await _dapper.ExecQueryAsyncObj("TicketConfim", model);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _ = ex.Message;
+                return false;
             }
         }
     }

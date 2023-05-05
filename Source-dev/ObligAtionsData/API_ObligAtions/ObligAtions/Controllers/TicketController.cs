@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using ObligAtions.Api.Interface;
+using ObligAtions.Api.ViewModel;
 using ObligAtions.Attributes;
 using ObligAtions.ViewModel;
 
@@ -25,6 +26,18 @@ namespace ObligAtions.Api.Controllers
             result.StatusCode = StatusCodes.Status200OK;
             result.Description = "Success";
             result.Data = await _ticket.TicketInfo(TicketCode);
+            return Ok(result);
+        }
+
+
+        [HttpPost("TicketConfim")]
+        [AuthenticationValidation]
+        public async Task<IActionResult> TicketConfim(TicketViewModel request)
+        {
+            DataResultViewModel<object> result = new DataResultViewModel<object>();
+            result.StatusCode = StatusCodes.Status200OK;
+            result.Description = "Success";
+            result.Data = await _ticket.TicketConfim(request);
             return Ok(result);
         }
     }
