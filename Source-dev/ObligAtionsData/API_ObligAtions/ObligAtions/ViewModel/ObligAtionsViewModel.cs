@@ -64,6 +64,7 @@
         public string? FromTwelveToFifteen { get; set; }
         public string? FromFteenToFiEighteen { get; set; }
         public string? FromEighteen { get; set; }
+        public string? BranchID { get; set; }
     }
 
     public class TicketUserIDViewModel

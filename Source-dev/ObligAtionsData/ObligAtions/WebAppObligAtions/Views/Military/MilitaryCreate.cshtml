@@ -88,6 +88,12 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-3 fontName">Khu phố: </div>
+            <div class="col-md-9">
+                <select id="fBranch" style="width:150px"></select>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-3 fontName">Quốc tịch: </div>
             <div class="col-md-9">
                 <input type="text" class="form-control" id="txtNationality" name="text" placeholder="Quốc tịch">
@@ -469,6 +475,7 @@
             dateInput: true
         });
         $("#txtWifeHusband").data("kendoDatePicker").value(new Date());
+        LoadBranch();
     });
     $("#txtBirthRegistration,#txtFamilyResidence,#txtCountryside,#txtMyCurrentResidence").on("input", function () {
         $(this).val($(this).val().replace(/\r?\n/g, ''));
@@ -481,8 +488,27 @@
     $("#txtFromSixToEleven,#txtFromTwelveToFifteen,#txtFromFteenToFiEighteen,#txtFromEighteen").on("input", function () {
         $(this).val($(this).val().replace(/\r?\n/g, ''));
     });
-
-    $("#btnAdd").click(function (e) {        
+    function LoadBranch() {
+        $.ajax({
+            url: '/User/GetBranch',
+            dataType: "json",
+            type: "GET",
+            async: false,
+            cache: false,
+            success: function (data) {
+                var _result = JSON.parse(data);
+                var _html = '';
+                for (var i = 0; i < _result.length; i++) {
+                    _html += '<option value=' + _result[i].BranchCode + '>' + _result[i].BranchName + '</option>'
+                }
+                $("#fBranch").html(_html);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        })
+    }
+    $("#btnAdd").click(function (e) {
         var sexValues;
         var sexMother;
         var father;
@@ -577,13 +603,14 @@
                 FromTwelveToFifteen: $("#txtFromTwelveToFifteen").val(),
                 FromFteenToFiEighteen: $("#txtFromFteenToFiEighteen").val(),
                 FromEighteen: $("#txtFromEighteen").val(),
+                BranchID: $("#fBranch option:selected").val(),
             },
             async: false,
             cache: false,
             success: function (data) {
                 console.log(data)
                 if (data == 'True') {
-                    toastr.success("thêm thành công", "Thông báo");                    
+                    toastr.success("thêm thành công", "Thông báo");
                     $("input:text").val("");
                     $("#txtBirthRegistration,#txtFamilyResidence,#txtCountryside,#txtMyCurrentResidence").val("");
                     $("#txtFatherBefore1975,#txtFatherAfter1975,#txtFatherLiveCurrently,#txtMotherBefore1975,#txtMotherAfter1975,#txtMotherLiveCurrently,#txtSiblings").val("");
