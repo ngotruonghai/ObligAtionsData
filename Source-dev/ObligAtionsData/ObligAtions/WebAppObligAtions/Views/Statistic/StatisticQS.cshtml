@@ -149,13 +149,13 @@
                     $("#grid").kendoGrid({
                         columns: [
                             {
-                                field: "TicketCode", title: "Mã hồ sơ", width: 100,
+                                field: "TicketCode", title: "Mã hồ sơ", width: 150,
                                 template: function (row) {
                                     return '<p><a href="/Military/MilitaryConfirm?TicketCode=' + row.TicketCode + '" target="_blank">' + row.TicketCode + '</a></p>'
                                 }
                             },
                             {
-                                field: "Status", title: "Trạng thái", width: 100,
+                                field: "Status", title: "Trạng thái", width: 150,
                                 template: function (row) {
 
                                     if (row.Status == 1) {
@@ -170,10 +170,10 @@
                                 }
                             },
 
-                            { field: "FullnameBirth", title: "Họ và tên", width: 100 },
-                            { field: "Birthday", title: "Năm sinh", width: 100 },
+                            { field: "FullnameBirth", title: "Họ và tên", width: 150 },
+                            { field: "Birthday", title: "Năm sinh", width: 150 },
                             {
-                                field: "Sex", title: "Giới tính", width: 100,
+                                field: "Sex", title: "Giới tính", width: 150,
                                 template: function (row) {
 
                                     if (row.Sex == 0) {
@@ -185,8 +185,8 @@
                                 }
                             },
 
-                            { field: "CreateDate", title: "Ngày tạo", width: 100 },
-                            { field: "UpdateDate", title: "Ngày cập nhật", width: 100 },
+                            { field: "CreateDate", title: "Ngày tạo", width: 150 },
+                            { field: "UpdateDate", title: "Ngày cập nhật", width: 150 },
                         ],
                         pageable: true,
                         toolbar: ["search"],
