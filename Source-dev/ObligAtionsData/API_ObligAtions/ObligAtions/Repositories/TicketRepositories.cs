@@ -56,5 +56,26 @@ namespace ObligAtions.Api.Repositories
                 return false;
             }
         }
+
+        /// <summary>
+        /// Danh sách lịch sử ticket
+        /// </summary>
+        /// <param name="TicketID"></param>
+        /// <returns></returns>
+        public async Task<DataTable> TicketHistory(string TicketID)
+        {
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@TicketID", TicketID);
+                DataTable data = (await _dapper.ExecQueryAsyncDataSet("HistoryTicektID", param)).Tables[0];
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _ = ex.Message;
+                return null;
+            }
+        }
     }
 }

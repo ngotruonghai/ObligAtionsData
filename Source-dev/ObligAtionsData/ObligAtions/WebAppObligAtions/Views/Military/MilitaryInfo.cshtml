@@ -95,7 +95,18 @@
         <div class="col-md-12">
             <fieldset>
                 <legend>Lịch sử Ticket</legend>
-                Tets
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">STT</th>d
+                            <th scope="col">Ghi chú</th>
+                            <th scope="col">Người duyệt</th>
+                            <th scope="col">Ngày tạo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ftable">
+                    </tbody>
+                </table>
             </fieldset>
         </div>
     </div>
@@ -104,6 +115,7 @@
     var TicektCode = $("#fTicketCode").text();
     $(document).ready(function () {
         LoadPgae();
+        LoadHistory();
     });
     /*========== Event ==========*/
 
@@ -158,4 +170,30 @@
             }
         })
     }
+    function LoadHistory() {
+
+        $.ajax({
+            url: '/Military/TicketHistory?TicketID=' + TicektCode,
+            dataType: "json",
+            type: "GET",
+            async: true,
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                var result = JSON.parse(data);
+                let html = '<tr>';
+                for (var i = 0; i < result.length; i++) {
+                    html += '<th scope = "row" > ' + i + ' </th>'
+                    html += ' <td>' + result[i].description + '</td>'
+                    html += ' <td>' + result[i].userName + '</td>'
+                    html += ' <td>' + result[i].createDate + '</td>'
+                    html += '</tr>'
+                    $("#ftable").html(html);
+                }
+
+                console.log(result);
+            }
+        })
+    }
+
 </script>

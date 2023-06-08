@@ -40,5 +40,16 @@ namespace ObligAtions.Api.Controllers
             result.Data = await _ticket.TicketConfim(request);
             return Ok(result);
         }
+
+        [HttpGet("TicketHistory")]
+        [AuthenticationValidation]
+        public async Task<IActionResult> TicketHistory(string TicketID)
+        {
+            DataResultViewModel<object> result = new DataResultViewModel<object>();
+            result.StatusCode = StatusCodes.Status200OK;
+            result.Description = "Success";
+            result.Data = await _ticket.TicketHistory(TicketID);
+            return Ok(result);
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace ObligAtions.Api.Interface
     {
         Task<DataTable> TicketInfo(string TicketCode);
         Task<bool> TicketConfim(TicketViewModel model);
+        Task<DataTable> TicketHistory(string TicketID);
     }
 }

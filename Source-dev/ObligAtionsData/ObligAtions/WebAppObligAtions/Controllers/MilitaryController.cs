@@ -91,6 +91,18 @@ namespace WebAppObligAtions.Controllers
         {
             return Json(await _api.GetAPI($"api/Ticket/GetTicektInfo?TicketCode={TicketCode}"));
         }
+
+        /// <summary>
+        /// Danh sách lịch sử ticket
+        /// Get: Military/TicketHistory?TicketID=66
+        /// </summary>
+        /// <param name="TicketID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> TicketHistory(string TicketID)
+        {
+            return Json(await _api.GetAPI($"api/Ticket/TicketHistory?TicketID={TicketID}"));
+        }
         #endregion
     }
 }
